@@ -16,6 +16,7 @@ const dirname = path.dirname(filename)
 const serverURL = process.env.NEXT_PUBLIC_SERVER_URL
 const allowedOrigins = [
   serverURL,
+  'https://kairos-schoolof-music.vercel.app',
   ...(process.env.FRONTEND_URLS?.split(',') ?? []),
 ]
   .map((origin) => origin?.trim())
