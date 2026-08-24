@@ -15,9 +15,7 @@ async function makeUserOneAdmin(): Promise<void> {
     process.exit(1)
   }
 
-  const currentRoles = new Set(
-    Array.isArray(existing.roles) ? (existing.roles as string[]) : [],
-  )
+  const currentRoles = new Set(existing.roles ?? [])
   currentRoles.add('admin')
 
   await payload.update({
