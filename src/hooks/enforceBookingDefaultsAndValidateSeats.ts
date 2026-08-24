@@ -45,10 +45,10 @@ export const enforceBookingDefaultsAndValidateSeats: CollectionBeforeChangeHook<
     (req.user as { roles?: string[] } | undefined)?.roles?.includes('admin'),
   )
 
-  // Non-admin bookings are always customer-sourced.
-  // Admin-created bookings are always marked as admin-sourced.
+  // Public clients cannot set administrative booking or payment state.
   if (!userIsAdmin) {
     data.bookingSource = 'customer'
+    data.paymentStatus = 'pending'
   } else {
     data.bookingSource = 'admin'
   }

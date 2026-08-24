@@ -1,7 +1,15 @@
 import type { CollectionConfig } from 'payload'
 
+import { isAdmin, isAdminOrPublished } from '@/access/roleHelpers'
+
 export const Events: CollectionConfig = {
   slug: 'events',
+  access: {
+    create: isAdmin,
+    read: isAdminOrPublished,
+    update: isAdmin,
+    delete: isAdmin,
+  },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'date', '_status'],

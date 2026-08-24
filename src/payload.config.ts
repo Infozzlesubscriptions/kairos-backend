@@ -13,8 +13,18 @@ import { Venue } from './globals/Venue'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+const serverURL = process.env.NEXT_PUBLIC_SERVER_URL
+const allowedOrigins = [
+  serverURL,
+  ...(process.env.FRONTEND_URLS?.split(',') ?? []),
+]
+  .map((origin) => origin?.trim())
+  .filter((origin): origin is string => Boolean(origin))
 
 export default buildConfig({
+  serverURL,
+  cors: allowedOrigins,
+  csrf: allowedOrigins,
   admin: {
     user: Users.slug,
     importMap: {
