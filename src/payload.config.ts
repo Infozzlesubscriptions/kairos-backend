@@ -9,6 +9,7 @@ import { Bookings } from './collections/Bookings'
 import { Events } from './collections/Events'
 import { Media } from './collections/Media'
 import { Users } from './collections/Users'
+import { getSeatAvailability } from './endpoints/getSeatAvailability'
 import { Venue } from './globals/Venue'
 
 const filename = fileURLToPath(import.meta.url)
@@ -33,6 +34,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, Events, Bookings],
+  endpoints: [getSeatAvailability],
   globals: [Venue],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
